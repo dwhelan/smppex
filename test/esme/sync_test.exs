@@ -78,6 +78,7 @@ defmodule SMPPEX.ESME.SyncTest do
     |> Enum.map(fn _ ->
       Task.async(fn ->
         pdu = SMPPEX.Pdu.Factory.bind_transmitter("system_id", "password")
+
         assert {:ok, resp} = ESMESync.request(esme, pdu)
         assert :bind_transmitter_resp == Pdu.command_name(resp)
       end)
